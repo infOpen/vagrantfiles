@@ -1,0 +1,24 @@
+---
+
+# Provision file used to create a build environment for apt packages on
+# Ubuntu Trusty
+
+- hosts : all
+  tasks :
+    - name : Install packages
+      apt :
+        name   : "{{ item }}"
+        state  : present
+        update_cache : True
+      become : True
+      with_items :
+        - debhelper
+        - cdbs
+        - lintian
+        - build-essential
+        - fakeroot
+        - devscripts
+        - pbuilder
+        - dh-make
+        - debootstrap
+
